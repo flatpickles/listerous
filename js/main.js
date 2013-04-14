@@ -1,4 +1,7 @@
-/* from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/ */
+/* 
+	Function to detect if site is rendering in a mobile browser.
+	from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/ 
+*/
 var isMobile = {
     Android: function() {
         return navigator.userAgent.match(/Android/i);
