@@ -33,11 +33,13 @@ $(document).ready(function() {
 		return false;
     });
 
-    setActions();
+    setActions($("#starter"));
+    setActions($("#title_container"));
     setupData();
 });
 
 
 function createNew() {
-	displayItem("test", "", true);
+	var newName = createItem();
+	displayItem(newName, "", true);
 }

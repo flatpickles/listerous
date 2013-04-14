@@ -3,12 +3,13 @@ var button_texts = ["Hit me again",
 					"Uno mas",
 					"Moar thangz",
 					"Think of other things"];
+var del_sep = "#";
 
 function displayItem(id, val, select) {
 	// add a new element to the end of the list
 	var $newEl = $($("#list_template").html());
-	$newEl.attr("id", id).attr("value", val);
-	$newEl.find(".delete").attr("id", "del_" + id);
+	$newEl.attr("id", id).find(".list_entry").attr("value", val);
+	$newEl.find(".delete").attr("id", "del" + del_sep + id);
 	$("#list").append($newEl);
 	// other UI updates
 	updateButton();
@@ -16,17 +17,13 @@ function displayItem(id, val, select) {
 		// only scroll if appropriate
 		window.scrollTo(0, document.body.scrollHeight);
 	}
-	setActions();
+	setActions($newEl);
 	if (select) $newEl.find("input").focus();
 };
 
-function removeItem(id) {
-	$("#" + id).animate({ opacity: 0, height: 0 }, 5000);
-};
-
-function setActions() {
+function setActions(el) {
 	// handle focus/click on list elements
-    $("input[type='text']").focus(function() {
+    el.find("input[type='text']").focus(function() {
 		this.setSelectionRange(0, 9999);    
 		return false;
     }).bind("touchend", function() {
@@ -41,15 +38,28 @@ function setActions() {
 		return false;
     });
     // handle delete click, send event to data.js
-    $("img.delete").click(function() {
-    	var id = $(this).attr("id").split("_")[1];
+    el.find("img.delete").click(function(e) {
+    	var id = $(this).attr("id").split(del_sep)[1];
 	    $(document).trigger("delete_el", [id]);
-	    $("#" + id).animate({ opacity: 0 }, 200, function() {
-		    $("#" + id).animate( { height: "0px" }, 200, function() {
-			    $("#" + id).remove();
-		    });
-	    });
+    });
+    // handle value changed, send to data.js
+    el.find("input").keyup(function() {
+    	var id = el.attr("id");
+    	var content = $(this).val();
+    	if (id == "title_container") {
+	    	$(document).trigger("update_title", [content]);
+    	} else {
+		    $(document).trigger("update_el", [id, content]);
+	    }
     })
+};
+
+function deleteItem(id) {
+    $("#" + id).stop().animate({ opacity: 0 }, 200, function() {
+	    $("#" + id).stop().animate( { height: "0px" }, 200, function() {
+		    $("#" + id).remove();
+	    });
+    });
 };
 
 function loadButton() {
