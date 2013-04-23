@@ -106,7 +106,17 @@ function attachListeners() {
 };
 
 function updateTitleListener(dataSnapshot) {
-	if ($("#title_input").val() != dataSnapshot.val()) $("#title_input").val(dataSnapshot.val());
+	// update input val if need be
+	var title = dataSnapshot.val();
+	if ($("#title_input").val() != title) {
+		$("#title_input").val(title);
+	}
+	// set the document title
+	if ($.trim(title) === "") {
+		document.title = startTitle;
+	} else {
+		document.title = title;
+	}
 };
 
 function addItemListener(childSnapshot, prevChildName) {
