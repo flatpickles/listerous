@@ -1,13 +1,13 @@
+// constants
 var fbURL = 'https://listerous.firebaseio.com/';
-var fbItems = '/items/';
+var fbItems = 'items/';
+
+// globals
 var listObjRef;
 var listItemsRef;
 
+// entry point for data management
 function setupData() {
-	$(document).on("delete_el", function(event, id) {
-		// handle deletion of element with identifier id
-	});
-	
 	// reload if hash changes
 	$(window).hashchange(function() {
 		location.reload();
@@ -16,28 +16,36 @@ function setupData() {
 	initFB();
 };
 
+// initialize firebase structure(s)
 function initFB() {
 	var currList = window.location.hash.split('#')[1];
-	listObjRef = new Firebase(fbURL + currList);
 	
 	// check if url has a list ID
 	if (currList == undefined) {
-		createList();
-		return;
+		createList(null);
+	} else {
+		listObjRef = new Firebase(fbURL + currList);	
+		// handle list rendering
+		listObjRef.once('value', function(snapshot) {
+			if (snapshot.val() === null) {
+				createList(currList);
+			} else {
+				listItemsRef = listObjRef.child(fbItems);
+				parseList(snapshot.val());
+			}
+		});
 	}
-	
-	// 
-	listObjRef.once('value', function(snapshot) {
-		if (snapshot.val() === null) {
-			console.log("not a list");
-			createList();
-		} else {
-			listItemsRef = new Firebase(fbURL + currList + fbItems);
-			parseList(snapshot.val());
-		}
-	});
 };
 
+function attachListeners() {
+	// attach update functions
+	listObjRef.child('title').on('value', updateTitleListener);
+	listItemsRef.on('child_added', addItemListener);
+	listItemsRef.on('child_removed', removeItemListener);
+	listItemsRef.on('child_changed', updateItemListener);	
+};
+
+// load an existing list into UI
 function parseList(listData) {
 	// set the title
 	$("#title_input").val(listData.title);
@@ -49,10 +57,16 @@ function parseList(listData) {
 			displayItem(i, listData.items[i], false);
 		});
 	}
+	
+	attachListeners();
 };
 
-function createList() {
+function createList(name) {
 	console.log('creating list');
+	
+	// make sure to initialize listItemsRef and listObjRef ?!?!
+	
+	attachListeners();
 };
 
 function createItem() {
@@ -80,18 +94,18 @@ $(document).on("update_title", function(e, content) {
 
 /** functions for live collaboration **/
 
-function listUpdateListener() {
-	
+function updateTitleListener(dataSnapshot) {
+	$("#title_input").val(dataSnapshot.val());
 };
 
-function titleUpdateListener() {
-	
+function addItemListener(childSnapshot, prevChildName) {
+	displayItem(childSnapshot.name(), childSnapshot.val(), false);
 };
 
-function deleteListener() {
-	
+function removeItemListener(oldChildSnapshot) {
+	deleteItem(oldChildSnapshot.name());
 };
 
-function addListener() {
-	
+function updateItemListener(childSnapshot, prevChildName) {
+	updateItem(childSnapshot.name(), childSnapshot.val());
 };

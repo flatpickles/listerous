@@ -6,6 +6,10 @@ var button_texts = ["Hit me again",
 var del_sep = "#";
 
 function displayItem(id, val, select) {
+	if ($('#'+id).length) {
+		if (select) $('#'+id).find("input").focus();
+		return;
+	}
 	// add a new element to the end of the list
 	var $newEl = $($("#list_template").html());
 	$newEl.attr("id", id).find(".list_entry").attr("value", val);
@@ -61,6 +65,11 @@ function deleteItem(id) {
 	    });
     });
 };
+
+function updateItem(id, value) {
+	var field = $("#" + id).find("input");
+	if (field.val() != value) field.val(value);
+}
 
 function loadButton() {
 	$("#new").css("visibility", "visible");
