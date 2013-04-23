@@ -36,13 +36,13 @@ $(document).ready(function() {
 		return false;
     });
 
-    setActions($("#starter"));
     setActions($("#title_container"));
     setupData();
 });
 
 
 function createNew() {
-	var newName = createItem();
-	displayItem(newName, "", true);
-}
+	var newName = createItem(null, function() {
+		displayItem(newName, "", true);
+	});
+};

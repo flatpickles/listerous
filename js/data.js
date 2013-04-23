@@ -2,6 +2,8 @@
 var fbURL = 'https://listerous.firebaseio.com/';
 var siteName = 'listero.us/'
 var fbItems = 'items';
+var startTitle = 'Untitled List';
+var startItem = 'Tap or click here to start';
 
 // globals
 var listObjRef;
@@ -18,15 +20,21 @@ function initFB() {
 	
 	// check if url has a list ID
 	if (currList == undefined) {
-		// navigation to home page
-		createList(null);
+		// should never be the case, but nav to home page just in case
+		window.location = "index.html";
 	} else {
 		listObjRef = new Firebase(fbURL + currList);	
 		// handle list rendering
 		listObjRef.once('value', function(snapshot) {
 			if (snapshot.val() === null) {
+				console.log('new');
 				// create a new list with the desired key
-				createList(currList);
+				createList(currList, function() {
+					// then render the newly created lists
+					listObjRef.once('value', function(snapshot) {
+						parseList(snapshot.val());
+					});
+				});
 			} else {
 				// load the existing list
 				listItemsRef = listObjRef.child(fbItems);
@@ -40,8 +48,6 @@ function initFB() {
 function parseList(listData) {
 	// set the title
 	$("#title_input").val(listData.title);
-	// remove starter
-	$("#starter").remove();
 	// populate list items (here, not in .on(), to preserve order)
 	if (listData.items != undefined) {
 		$.each(listData.items, function(i) {
@@ -53,24 +59,21 @@ function parseList(listData) {
 };
 
 // create a new list
-function createList(name) {
+function createList(name, callback) {
 	// create the FB object
 	var fb = new Firebase(fbURL);
 	listObjRef = name == null ? fb.push() : fb.child(name);
-	listObjRef.set({title: $("#title_input").val()});
-	listItemsRef = listObjRef.child(fbItems);
-	
-	// update starter to be the real deal
-	var newName = createItem($("#starter").find("input").val());
-	$("#starter").attr("id", newName).find(".delete").attr("id", "del" + del_sep + newName);
-	
-	// redirect to new page 
-	window.location = listObjRef.name();
+	listObjRef.set({title: startTitle}, function() {
+		listItemsRef = listObjRef.child(fbItems);
+		createItem(startItem, callback);
+	});
+	// return list name
+	return listObjRef.name();
 };
 
-function createItem(text) {
-	if (text == undefined) text = "";
-	var newItem = listItemsRef.push(text);
+function createItem(text, callback) {
+	if (text == null) text = "";
+	var newItem = listItemsRef.push(text, callback);
 	return newItem.name();
 };
 
