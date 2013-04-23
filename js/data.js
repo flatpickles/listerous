@@ -8,11 +8,6 @@ var listItemsRef;
 
 // entry point for data management
 function setupData() {
-	// reload if hash changes
-	$(window).hashchange(function() {
-		location.reload();
-	});
-	
 	initFB();
 };
 
@@ -37,21 +32,13 @@ function initFB() {
 	}
 };
 
-function attachListeners() {
-	// attach update functions
-	listObjRef.child('title').on('value', updateTitleListener);
-	listItemsRef.on('child_added', addItemListener);
-	listItemsRef.on('child_removed', removeItemListener);
-	listItemsRef.on('child_changed', updateItemListener);	
-};
-
 // load an existing list into UI
 function parseList(listData) {
 	// set the title
 	$("#title_input").val(listData.title);
 	// remove starter
 	$("#starter").remove();
-	// populate list items
+	// populate list items (here, not in .on(), to preserve order)
 	if (listData.items != undefined) {
 		$.each(listData.items, function(i) {
 			displayItem(i, listData.items[i], false);
@@ -61,16 +48,27 @@ function parseList(listData) {
 	attachListeners();
 };
 
+// create a new list
 function createList(name) {
-	console.log('creating list');
+	// create the FB object
+	var fb = new Firebase(fbURL);
+	listObjRef = name == null ? fb.push() : fb.child(name);
+	listObjRef.set({title: $("#title_input").val()});
+	listItemsRef = listObjRef.child(fbItems);
 	
-	// make sure to initialize listItemsRef and listObjRef ?!?!
+	// update starter to be the real deal
+	var newName = createItem($("#starter").find("input").val());
+	$("#starter").attr("id", newName).find(".delete").attr("id", "del" + del_sep + newName);
+	
+	// set hash too
+	window.location.hash = "#" + listObjRef.name();
 	
 	attachListeners();
 };
 
-function createItem() {
-	var newItem = listItemsRef.push("");
+function createItem(text) {
+	if (text == undefined) text = "";
+	var newItem = listItemsRef.push(text);
 	return newItem.name();
 };
 
@@ -93,6 +91,21 @@ $(document).on("update_title", function(e, content) {
 
 
 /** functions for live collaboration **/
+
+function attachListeners() {
+	// attach update functions
+	listObjRef.child('title').on('value', updateTitleListener);
+	listItemsRef.on('child_added', addItemListener);
+	listItemsRef.on('child_removed', removeItemListener);
+	listItemsRef.on('child_changed', updateItemListener);
+		
+	// reload if hash changes
+	var im = false; // so it doesn't update the first time
+	$(window).hashchange(function() {
+		if (im) location.reload();
+		im = true;
+	});
+};
 
 function updateTitleListener(dataSnapshot) {
 	if ($("#title_input").val() != dataSnapshot.val()) $("#title_input").val(dataSnapshot.val());
