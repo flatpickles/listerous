@@ -1,5 +1,6 @@
 // constants
 var fbURL = 'https://listerous.firebaseio.com/';
+var siteName = 'listero.us/'
 var fbItems = 'items';
 
 // globals
@@ -13,18 +14,21 @@ function setupData() {
 
 // initialize firebase structure(s)
 function initFB() {
-	var currList = window.location.hash.split('#')[1];
+	var currList = window.location.toString().split(siteName)[1];
 	
 	// check if url has a list ID
 	if (currList == undefined) {
+		// navigation to home page
 		createList(null);
 	} else {
 		listObjRef = new Firebase(fbURL + currList);	
 		// handle list rendering
 		listObjRef.once('value', function(snapshot) {
 			if (snapshot.val() === null) {
+				// create a new list with the desired key
 				createList(currList);
 			} else {
+				// load the existing list
 				listItemsRef = listObjRef.child(fbItems);
 				parseList(snapshot.val());
 			}
@@ -44,7 +48,7 @@ function parseList(listData) {
 			displayItem(i, listData.items[i], false);
 		});
 	}
-	
+	// attach listeners to firebase objects
 	attachListeners();
 };
 
@@ -60,10 +64,8 @@ function createList(name) {
 	var newName = createItem($("#starter").find("input").val());
 	$("#starter").attr("id", newName).find(".delete").attr("id", "del" + del_sep + newName);
 	
-	// set hash too
-	window.location.hash = "#" + listObjRef.name();
-	
-	attachListeners();
+	// redirect to new page 
+	window.location = listObjRef.name();
 };
 
 function createItem(text) {
@@ -98,13 +100,6 @@ function attachListeners() {
 	listItemsRef.on('child_added', addItemListener);
 	listItemsRef.on('child_removed', removeItemListener);
 	listItemsRef.on('child_changed', updateItemListener);
-		
-	// reload if hash changes
-	var im = false; // so it doesn't update the first time
-	$(window).hashchange(function() {
-		if (im) location.reload();
-		im = true;
-	});
 };
 
 function updateTitleListener(dataSnapshot) {

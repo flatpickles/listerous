@@ -31,7 +31,7 @@ $(document).ready(function() {
 	$(document).keyup(function(e) {
 		e.preventDefault();
 		// detect enter keypress (iOS bugs out with enter, so only on desktop)
-		if (e.which == 13 && !isMobile.any()) { createNew(); }
+		if (e.which == 13 && !isMobile.any() && $(':focus').length > 0) { createNew(); }
 		else if (e.which == 27) { $("input[type='text']").blur();}
 		return false;
     });
