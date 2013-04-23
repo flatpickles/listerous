@@ -1,6 +1,6 @@
 // constants
 var fbURL = 'https://listerous.firebaseio.com/';
-var fbItems = 'items/';
+var fbItems = 'items';
 
 // globals
 var listObjRef;
@@ -95,7 +95,7 @@ $(document).on("update_title", function(e, content) {
 /** functions for live collaboration **/
 
 function updateTitleListener(dataSnapshot) {
-	$("#title_input").val(dataSnapshot.val());
+	if ($("#title_input").val() != dataSnapshot.val()) $("#title_input").val(dataSnapshot.val());
 };
 
 function addItemListener(childSnapshot, prevChildName) {
