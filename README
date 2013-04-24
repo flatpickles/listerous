@@ -1,6 +1,7 @@
 Listerous is a work in progress.
 
 To-do:
+- pad add button according to device (more bottom padding for iOS)
 - listero.us -> most recent list
 - history
 - preload images

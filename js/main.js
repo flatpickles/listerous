@@ -26,7 +26,7 @@ var isMobile = {
 $(document).ready(function() {
 	loadButton();
 	
-	/* Get aware of editing commands */
+	// Get aware of editing commands
 	$("#new").click(createNew);
 	$(document).keyup(function(e) {
 		e.preventDefault();
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 
 function createNew() {
-	var newName = createItem(null, function() {
-		displayItem(newName, "", true);
-	});
+	var newName = createItem(null, function() {});
+	// can't do this in a callback or iOS won't show the keyboard...
+	displayItem(newName, "", true);
 };

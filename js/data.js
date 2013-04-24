@@ -1,5 +1,5 @@
 // constants
-var fbURL = 'https://listerous.firebaseio.com/';
+var fbURL = 'https://listerous.firebaseio.com/lists/';
 var siteName = 'listero.us/'
 var fbItems = 'items';
 var startTitle = 'Untitled List';

@@ -1,14 +1,27 @@
 // constants
 var button_texts = ["Hit me again",
-					"Tap that",
 					"Uno mas",
-					"Moar thangz",
-					"Think of other things"];
+					"One more time",
+					"I'll have another",
+					"Keep 'em coming",
+					"Moar plz",
+					"Feed me"];
 var del_sep = "#";
 
+// fade in once loaded and fadeAllIn called
+var resLoaded = false;
+var dataLoaded = false;
+
+$(window).load(function() {
+	resLoaded = true;
+	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(250);
+});
+
 function fadeAllIn() {
-	$("#contents_wrapper").fadeIn(250);
+	dataLoaded = true;
+	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(250);
 };
+// end fade in shit
 
 function displayItem(id, val, select) {
 	if ($('#'+id).length) {
@@ -34,11 +47,6 @@ function setActions(el) {
 	// handle focus/click on list elements
     el.find("input[type='text']").focus(function() {
 		this.setSelectionRange(0, 9999);    
-		return false;
-    }).bind("touchend", function() {
-    	if (!$(this).is(":focus")) {
-			this.setSelectionRange(0, 9999);
-		}
 		return false;
     }).mouseup(function() {	
     	if (!$(this).is(":focus")) {
