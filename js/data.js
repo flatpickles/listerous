@@ -50,12 +50,14 @@ function parseList(listData) {
 	$("#title_input").val(listData.title);
 	// populate list items (here, not in .on(), to preserve order)
 	if (listData.items != undefined) {
-		$.each(listData.items, function(i) {
+		for (i in listData.items) {
 			displayItem(i, listData.items[i], false);
-		});
+		}
 	}
 	// attach listeners to firebase objects
 	attachListeners();
+	// show everything
+	fadeAllIn();
 };
 
 // create a new list

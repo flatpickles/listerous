@@ -1,12 +1,10 @@
 Listerous is a work in progress.
 
 To-do:
-- nicer loading screen (listero.us main)
-- fade in after load
+- listero.us -> most recent list
+- history
 - preload images
 - hover graphics
 - retina graphics
-- set title to list name
 - analytics
 - loading screen
-- listero.us -> most recent list

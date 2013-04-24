@@ -5,6 +5,10 @@ var button_texts = ["Hit me again",
 					"Think of other things"];
 var del_sep = "#";
 
+function fadeAllIn() {
+	$("#contents_wrapper").fadeIn(250);
+};
+
 function displayItem(id, val, select) {
 	if ($('#'+id).length) {
 		if (select) $('#'+id).find("input").focus();
@@ -69,7 +73,7 @@ function deleteItem(id) {
 function updateItem(id, value) {
 	var field = $("#" + id).find("input");
 	if (field.val() != value) field.val(value);
-}
+};
 
 function loadButton() {
 	$("#new").css("visibility", "visible");
