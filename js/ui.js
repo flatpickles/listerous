@@ -1,3 +1,4 @@
+// constants
 var button_texts = ["Hit me again",
 					"Tap that",
 					"Uno mas",
