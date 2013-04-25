@@ -36,7 +36,6 @@ function initFB() {
 		// handle list rendering
 		listObjRef.once('value', function(snapshot) {
 			if (snapshot.val() === null) {
-				console.log('new');
 				// create a new list with the desired key
 				createList(currList, function() {
 					// then render the newly created lists
@@ -67,6 +66,8 @@ function parseList(listData) {
 	attachListeners();
 	// show everything
 	fadeAllIn();
+	// register the recency of this list in history
+	setViewed(listObjRef.name());
 };
 
 // make a generic list, go there.

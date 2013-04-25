@@ -1,14 +1,9 @@
-var firstTime = true;
-
 $(document).ready(function() {
+	// find most recent list
+	var recent = getMostRecentList();
 	// if they've been before, load most recent list
-	if (!firstTime) {
-		$(".header_img").hide();
-		$("#blurb").hide();
-		$("#new").hide();
-		$("#header_text").html("Loading...");
-		$("#contents_wrapper").fadeIn(250);
-		createAndLoad(false);
+	if (recent != null) {
+		window.location = recent;
 	} else {
 		// display welcome screen once everything is loaded
 		$("#header_text").html("Welcome!");

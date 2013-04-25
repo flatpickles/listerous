@@ -19,7 +19,9 @@ function setViewed(id) {
 
 // return the most recently viewed page, or undefined if none exists
 function getMostRecentList() {
-	return $.cookie('viewed').recent;
+	var obj = $.cookie('viewed');
+	if (obj == undefined) return null;
+	else return obj.recent;
 };
 
 // get a list of viewed ids, in most to least recent order
