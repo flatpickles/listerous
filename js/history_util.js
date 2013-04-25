@@ -5,7 +5,7 @@ var expiration = 90; // if you haven't looked at your lists in 2 months, you're 
 
 // set the list with ID as viewed most recently
 function setViewed(id) {
-	// get cookie lists structure
+	// get cookie lists structure, create if nonexistent
 	var obj = $.cookie('viewed');
 	if (obj == undefined) obj = $.parseJSON('{"lists": {}}');
 	// set recent
@@ -22,11 +22,12 @@ function getMostRecentList() {
 	return $.cookie('viewed').recent;
 };
 
-// get a list of viewed ids, in most to least recent
+// get a list of viewed ids, in most to least recent order
 function getAllLists() {
 	// get structure
 	var obj = $.cookie('viewed');
 	if (obj == undefined) return [];
+	
 	// read into list for sorting
 	var viewed = [];
 	for (el in obj.lists) {
@@ -48,7 +49,7 @@ function getAllLists() {
 
 
 /* 
--- structure --
+-- cookie json structure --
 	
 	viewed => 
 		{ lists:
