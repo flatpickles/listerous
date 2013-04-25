@@ -1,15 +1,19 @@
 Listerous is a work in progress.
 
 TODO:
-- pad add button according to device (more bottom padding for iOS)
+
+Features:
 - listero.us -> most recent list
-- history
-- title delete -> refresh stores "" in FB
-- navigate to *.* or */* breaks routes somehow....
-- fix snake- & camel-case shitshow
-- maybe "stuff" vs 'stuff' too
+- history page (delete histories?)
 - preload images
 - hover graphics
 - retina graphics
 - analytics
-- loading screen
+
+Bugs / de-grossing:
+- pad add button according to device (more bottom padding for iOS)
+- title delete -> refresh stores "" in FB
+- navigate to *.* or */* breaks routes somehow....
+- fix snake- & camel-case shitshow
+- maybe "stuff" vs 'stuff' too
+- add moar comments
