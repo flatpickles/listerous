@@ -55,7 +55,6 @@ img.header_img {
 	border: 3px solid #008284;
 	color: #006064;
 	cursor: pointer;
-	visibility: hidden;
 	z-index: 9999;
 	/* spacing */
 	margin-top: 10px;
@@ -70,6 +69,10 @@ img.header_img {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+#header_new {
+	cursor: pointer;
 }
 
 a {
@@ -124,7 +127,7 @@ input:focus {
 	padding-top: 7px;
 }
 
-#about_blurb {
+#blurb {
 	text-align: left;
 	font-size: 1.5em;
 	padding: 12px;

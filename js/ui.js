@@ -84,11 +84,6 @@ function updateItem(id, value) {
 	if (field.val() != value) field.val(value);
 };
 
-function loadButton() {
-	$("#new").css("visibility", "visible");
-	updateButton();
-};
-
 function updateButton() {
 	$("#new").html(button_texts[Math.floor(Math.random()*button_texts.length)]);
 };

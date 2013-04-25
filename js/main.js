@@ -24,8 +24,6 @@ var isMobile = {
 };
 
 $(document).ready(function() {
-	loadButton();
-	
 	// Get aware of editing commands
 	$("#new").click(createNew);
 	$(document).keyup(function(e) {

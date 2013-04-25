@@ -13,20 +13,41 @@
 		<link rel="stylesheet" type="text/css" href="reset.css"/>
 		
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
-		<script src='https://cdn.firebase.com/v0/firebase.js'></script>
-		<script src="/js/data.js"></script>
-		<script src="/js/load.js"></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+		<script type='text/javascript' src="/js/data.js"></script>
+		<script type='text/javascript' src="/js/load.js"></script>
 	</head>
 
 	<body>
 		<div id="wrapper">
+		
+			<div id="contents_wrapper" style="display:none">
 			
-			<div id="header">
-				<div id="header_text">
-					Loading...
-				</div> 		
+				<div id="header">
+					<div class="title_container">
+						<a href="/history" id="left_nav"><img src="graphics/history.png" class="header_img" title="History"/></a><div id="header_text"></div><img src="graphics/new.png" class="header_img" title="New List" id="header_new"/>
+					</div>
+				</div>
+			
+				<div id="blurb">
+					Hey stranger! Congrats on your first visit to Listerous, the simple solution for on-the-fly, collaborative list-making.
+					
+					<br/><br/>
+					
+					Once you start using Listerous, this page will automatically redirect to your most recently viewed list, and you'll always be able to see lists you've viewed from this device from the history page.
+					
+					<br/><br/>
+					
+					Are you ready to rumble!? 
+				</div>
+				
+				<center>
+					<div id="new">
+						Let's do it!
+					</div>
+				</center>
+				
 			</div>
-			
 		</div>
 	</body>
 </html>

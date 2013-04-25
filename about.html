@@ -13,7 +13,9 @@
 		<link rel="stylesheet" type="text/css" href="/reset.css"/>
 		
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
-		<script src="/js/about.js"></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+		<script type='text/javascript' src="/js/data.js"></script>
+		<script type='text/javascript' src="/js/about.js"></script>
 	</head>
 	
 	<body>
@@ -24,14 +26,14 @@
 			
 				<div id="header">
 					<div class="title_container">
-						<a href="/history"><img src="/graphics/history.png" class="header_img" title="History"/></a><div id="header_text">About</div><a href="/"><img src="/graphics/new.png" class="header_img" title="New List"/></a>
+						<a href="/history" id="left_nav"><img src="graphics/history.png" class="header_img" title="History"/></a><div id="header_text">About</div><img src="graphics/new.png" class="header_img" title="New List" id="header_new"/>
 					</div>
 				</div>
 					
-				<div id="about_blurb">
+				<div id="blurb">
 					Listerous is a simple tool for creating and editing lists on-the-fly. You can share a list with others by distributing its unique URL, and revisit lists you've previously viewed on this device from the history page.
 					
-					<br><br>
+					<br/><br/>
 					
 					This app is powered by <a href="http://twitter.com/firebase">@firebase</a>, and brought to you by <a href="http://twitter.com/man1">@man1</a>. Feel free to contact me with suggestions, bug reports, or anything else.
 				</div>	

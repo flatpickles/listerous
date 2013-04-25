@@ -9,6 +9,15 @@ var startItem = 'Tap or click here to start';
 var listObjRef;
 var listItemsRef;
 
+// for any page utilizing data.js: make a click on header_new -> create & load
+$(document).ready(function() {
+	$("#header_new").click(createAndLoad);
+	// while we're at it, make about/history loads fade out too
+	$("#left_nav").click(function() {
+		$("#contents_wrapper").fadeOut(250);
+	});
+});
+
 // entry point for data management
 function setupData() {
 	initFB();
@@ -58,6 +67,14 @@ function parseList(listData) {
 	attachListeners();
 	// show everything
 	fadeAllIn();
+};
+
+// make a generic list, go there.
+function createAndLoad(fade) {
+	if (fade || fade == undefined) $("#contents_wrapper").fadeOut(250);
+	var newList = createList(null, function() {
+		window.location = newList;
+	});
 };
 
 // create a new list

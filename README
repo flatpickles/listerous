@@ -4,6 +4,7 @@ To-do:
 - pad add button according to device (more bottom padding for iOS)
 - listero.us -> most recent list
 - history
+- title delete -> refresh stores "" in FB
 - preload images
 - hover graphics
 - retina graphics
