@@ -3,8 +3,7 @@ Listerous is a work in progress.
 TODO:
 
 Features:
-- listero.us -> most recent list
-- history page (delete histories?)
+- nicer looking history page
 - preload images
 - hover graphics
 - retina graphics
@@ -12,7 +11,7 @@ Features:
 
 Bugs / de-grossing:
 - fix rotation etc. for mobile
-- maybe not highlight fields on click?
+- maybe not highlight fields on click? could highlight only first fields (likely to be replaced)
 - pad add button according to device (more bottom padding for iOS)
 - title delete -> refresh stores "" in FB
 - navigate to *.* or */* breaks routes somehow....
