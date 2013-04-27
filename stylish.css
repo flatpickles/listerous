@@ -132,3 +132,13 @@ input:focus {
 	font-size: 1.5em;
 	padding: 12px;
 }
+
+/* history page specifically */ 
+
+#history_list {
+	padding: 10px;
+}
+
+.history_link {
+	font-size: 2em;
+}

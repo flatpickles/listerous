@@ -2,6 +2,7 @@
 $.cookie.json = true;
 // constants
 var expiration = 90; // if you haven't looked at your lists in 2 months, you're a mope
+var histDisplay = 10; // display 10 recent items in history
 
 // set the list with ID as viewed most recently
 function setViewed(id) {
@@ -43,8 +44,11 @@ function getAllLists() {
 	
 	// return just items, no time
 	var ret = [];
+	var count = 0;
+	
 	for (el in viewed) {
 		ret.push(viewed[el].listID);
+		if (++count == histDisplay) break;
 	}
 	return ret;
 };

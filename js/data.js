@@ -34,7 +34,7 @@ function initFB() {
 	} else {
 		listObjRef = new Firebase(fbURL + currList);	
 		// handle list rendering
-		listObjRef.once('value', function(snapshot) {
+		listObjRef.once('value', function(snapshot) { // maybe we could just use child()
 			if (snapshot.val() === null) {
 				// create a new list with the desired key
 				createList(currList, function() {
@@ -95,6 +95,11 @@ function createItem(text, callback) {
 	if (text == null) text = "";
 	var newItem = listItemsRef.push(text, callback);
 	return newItem.name();
+};
+
+function loadName(listID, callback) {
+	var l = new Firebase(fbURL + listID);
+	l.once('value', callback);
 };
 
 
