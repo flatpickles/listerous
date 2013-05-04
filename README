@@ -3,11 +3,12 @@ Listerous is a work in progress.
 TODO:
 
 Features:
+- only let IE 8+ users see anything
+- fix IE8 select bug (ui.js:49)
 - nicer looking history page
 - preload images
 - hover graphics
-- retina graphics
-- analytics
+- retina graphics?
 
 Bugs / de-grossing:
 - fix rotation etc. for mobile

@@ -46,7 +46,7 @@ function displayItem(id, val, select) {
 function setActions(el) {
 	// handle focus/click on list elements
     el.find("input[type='text']").focus(function() {
-		this.setSelectionRange(0, 9999);    
+		this.setSelectionRange(0, 9999); // this doesn't work in IE!  
 		return false;
     }).mouseup(function() {	
     	if (!$(this).is(":focus")) {
