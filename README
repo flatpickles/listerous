@@ -11,7 +11,7 @@ Features:
 - retina graphics?
 
 Bugs / de-grossing:
-- fix rotation etc. for mobile
+- handle /history if no history
 - maybe not highlight fields on click? could highlight only first fields (likely to be replaced)
 - pad add button according to device (more bottom padding for iOS)
 - title delete -> refresh stores "" in FB

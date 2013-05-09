@@ -14,12 +14,12 @@ var dataLoaded = false;
 
 $(window).load(function() {
 	resLoaded = true;
-	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(250);
+	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(FADETIME);
 });
 
 function fadeAllIn() {
 	dataLoaded = true;
-	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(250);
+	if (resLoaded && dataLoaded) $("#contents_wrapper").fadeIn(FADETIME);
 };
 // end fade in shit
 
@@ -72,8 +72,8 @@ function setActions(el) {
 };
 
 function deleteItem(id) {
-    $("#" + id).stop().animate({ opacity: 0 }, 200, function() {
-	    $("#" + id).stop().animate( { height: "0px" }, 200, function() {
+    $("#" + id).stop().animate({ opacity: 0 }, FADETIME, function() {
+	    $("#" + id).stop().animate( { height: "0px" }, FADETIME, function() {
 		    $("#" + id).remove();
 	    });
     });

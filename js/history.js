@@ -34,5 +34,5 @@ function loadHistoryItem(snapshot) {
 		$("." + snapshot.name()).remove();
 	}
 	// fade in if necessary
-	if (++loaded == toLoad) $("#contents_wrapper").fadeIn(250);
+	if (++loaded == toLoad) $("#contents_wrapper").fadeIn(FADETIME);
 };
