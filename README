@@ -3,7 +3,6 @@ Listerous is a work in progress.
 TODO:
 
 Features:
-- handle /history if no history
 - only let IE 8+ users see anything
 - make button text always new
 - preload X image
@@ -17,4 +16,4 @@ Bugs / de-grossing:
 - fix snake- & camel-case shitshow
 - maybe "stuff" vs 'stuff' too
 - add moar comments
-- maybe not highlight fields on click? IDK
+- maybe (not) highlight fields on click? IDK

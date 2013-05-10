@@ -142,3 +142,8 @@ input:focus {
 .history_link {
 	font-size: 2em;
 }
+
+#no_history {
+	font-size: 2em;
+	color: #808080;
+}

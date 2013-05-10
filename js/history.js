@@ -9,8 +9,16 @@ $(window).load(function() {
 function loadAllHistory() {
 	var lists = getAllLists();
 	toLoad = lists.length;
-	// create elements, call load for each
 	
+	// check for no lists...
+	if (toLoad == 0) {
+		var $newEl = $("<div id='no_history'>[No list history]</div>");
+		$("#history_list").append($newEl);
+		$("#contents_wrapper").fadeIn(FADETIME);
+		return; // bounce.
+	}
+	
+	// create elements, call load for each
 	for (list in lists) {
 		var name = lists[list];
 		// create new elements

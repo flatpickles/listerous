@@ -1,6 +1,6 @@
 var LISTWIDTH = 400.0;
 var FADETIME = 200;
-var SELECTONCLICK = true;
+var SELECTONCLICK = false;
 
 $(document).ready(function() {
 	// make new click createAndLoad (from data.js
