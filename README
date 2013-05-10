@@ -3,6 +3,7 @@ Listerous is a work in progress.
 TODO:
 
 Features:
+- handle /history if no history
 - only let IE 8+ users see anything
 - make button text always new
 - preload X image
@@ -10,7 +11,6 @@ Features:
 - nicer looking history page
 
 Bugs / de-grossing:
-- handle /history if no history
 - pad add button according to device (more bottom padding for iOS)
 - title delete -> refresh stores "" in FB
 - navigate to *.* or */* breaks routes somehow....
