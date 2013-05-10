@@ -87,5 +87,11 @@ function updateItem(id, value) {
 };
 
 function updateButton() {
-	$("#new").html(button_texts[Math.floor(Math.random()*button_texts.length)]);
+	// get a new text which differs from the current
+	var newText = button_texts[Math.floor(Math.random()*button_texts.length)];
+	while (newText == $("#new").html()) {
+		newText = button_texts[Math.floor(Math.random()*button_texts.length)];
+	}
+	// set the text of the button
+	$("#new").html(newText);
 };
