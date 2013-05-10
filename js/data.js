@@ -50,7 +50,7 @@ function parseList(listData) {
 	// populate list items (here, not in .on(), to preserve order)
 	if (listData.items != undefined) {
 		for (i in listData.items) {
-			displayItem(i, listData.items[i], false);
+			displayItem(i, listData.items[i], false, SELECTONCLICK);
 		}
 	}
 	// attach listeners to firebase objects
@@ -136,7 +136,7 @@ function updateTitleListener(dataSnapshot) {
 };
 
 function addItemListener(childSnapshot, prevChildName) {
-	displayItem(childSnapshot.name(), childSnapshot.val(), false);
+	displayItem(childSnapshot.name(), childSnapshot.val(), false, SELECTONCLICK);
 };
 
 function removeItemListener(oldChildSnapshot) {

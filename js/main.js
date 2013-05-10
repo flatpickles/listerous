@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 
     // set up title bar
-    setActions($("#title_container"));
+    setActions($("#title_container"), SELECTONCLICK);
     $("#title_input").blur(function() {
     	var v = $.trim($(this).val());
     	if (v === "") {
@@ -28,5 +28,5 @@ $(document).ready(function() {
 function createNew() {
 	var newName = createItem(null, function() {});
 	// can't do this in a callback or iOS won't show the keyboard...
-	displayItem(newName, "", true);
+	displayItem(newName, "", true, SELECTONCLICK);
 };

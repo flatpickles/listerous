@@ -4,18 +4,17 @@ TODO:
 
 Features:
 - only let IE 8+ users see anything
-- fix IE8 select bug (ui.js:49)
+- make button text always new
+- preload X image
+- hover graphics (+ preload)
 - nicer looking history page
-- preload images
-- hover graphics
-- retina graphics?
 
 Bugs / de-grossing:
 - handle /history if no history
-- maybe not highlight fields on click? could highlight only first fields (likely to be replaced)
 - pad add button according to device (more bottom padding for iOS)
 - title delete -> refresh stores "" in FB
 - navigate to *.* or */* breaks routes somehow....
 - fix snake- & camel-case shitshow
 - maybe "stuff" vs 'stuff' too
 - add moar comments
+- maybe not highlight fields on click? IDK

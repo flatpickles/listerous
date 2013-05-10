@@ -23,9 +23,9 @@ function fadeAllIn() {
 };
 // end fade in shit
 
-function displayItem(id, val, select) {
+function displayItem(id, val, focus, select) {
 	if ($('#'+id).length) {
-		if (select) $('#'+id).find("input").focus();
+		if (focus) $('#'+id).find("input").focus();
 		return;
 	}
 	// add a new element to the end of the list
@@ -39,21 +39,23 @@ function displayItem(id, val, select) {
 		// only scroll if appropriate
 		window.scrollTo(0, document.body.scrollHeight);
 	}
-	setActions($newEl);
-	if (select) $newEl.find("input").focus();
+	setActions($newEl, select);
+	if (focus) $newEl.find("input").focus();
 };
 
-function setActions(el) {
-	// handle focus/click on list elements
-    el.find("input[type='text']").focus(function() {
-		this.setSelectionRange(0, 9999); // this doesn't work in IE!  
-		return false;
-    }).mouseup(function() {	
-    	if (!$(this).is(":focus")) {
-			this.setSelectionRange(0, 9999);
-		}
-		return false;
-    });
+function setActions(el, select) {
+	if (select) {
+		// handle focus/click on list elements
+	    el.find("input[type='text']").focus(function() {
+			$(this).setSelection(0, 9999); // this doesn't work in IE!  
+			return false;
+	    }).mouseup(function() {	
+	    	if (!$(this).is(":focus")) {
+				$(this).setSelection(0, 9999);
+			}
+			return false;
+	    });
+    }
     // handle delete click, send event to data.js
     el.find("img.delete").click(function(e) {
     	var id = $(this).attr("id").split(del_sep)[1];
