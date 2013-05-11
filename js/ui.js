@@ -8,6 +8,13 @@ var button_texts = ["Hit me again",
 					"Feed me"];
 var del_sep = "#";
 
+// preloads (global)
+delImage = new Image();
+delHovImage = new Image();
+delImage.src = "graphics/x.png";
+delHovImage.src = "graphics/x_hover.png";
+/* var delImgEl = $('<img />').attr('src', 'graphics/x.png'); // MAYBE THIS WILL WORK */
+
 // fade in once loaded and fadeAllIn called
 var resLoaded = false;
 var dataLoaded = false;
@@ -60,6 +67,11 @@ function setActions(el, select) {
     el.find("img.delete").click(function(e) {
     	var id = $(this).attr("id").split(del_sep)[1];
 	    $(document).trigger("delete_el", [id]);
+    }).hover(function() {
+    	// hover effects for X
+    	$(this).attr("src", "graphics/x_hover.png");
+    }, function () {
+	    $(this).attr("src", "graphics/x.png");
     });
     // handle value changed, send to data.js
     el.find("input").keyup(function() {

@@ -92,7 +92,7 @@ img {
 img.delete {
 	padding-left: 8px;
 	max-width: 30px; /* could be 4 px wider, but this looks good */
-	vertical-align: text-bottom;
+	vertical-align: text-bottom; 
 }
 
 input[type="text"] {

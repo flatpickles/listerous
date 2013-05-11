@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	// preload (global)
-	delImage = new Image();
-	delImage.src = "graphics/x.png";
-
 	// Get aware of editing commands
 	$("#new").click(createNew);
 	$(document).keyup(function(e) {
