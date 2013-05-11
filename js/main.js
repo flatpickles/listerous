@@ -20,6 +20,13 @@ $(document).ready(function() {
     	}
     });
     
+    // add bottom padding if it's mobile (see the button after focus)
+    // maybe this should just be for iOS? Whatever.
+    if (isMobile.any()) {
+	    // padding-bottom: 45px;
+	    $("#contents_wrapper").css("padding-bottom", "45px");
+    }
+    
     // go data go!
     setupData();
 });

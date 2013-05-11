@@ -35,11 +35,11 @@ function displayItem(id, val, focus, select) {
 	$("#list").append($newEl);
 	// other UI updates
 	updateButton();
+	setActions($newEl, select);
 	if ($(document).height() > $(window).height()) {
 		// only scroll if appropriate
 		window.scrollTo(0, document.body.scrollHeight);
 	}
-	setActions($newEl, select);
 	if (focus) $newEl.find("input").focus();
 };
 
