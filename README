@@ -8,7 +8,6 @@ Features:
 - nicer looking history page
 
 Bugs / de-grossing:
-- pad add button according to device (more bottom padding for iOS)
 - title delete -> refresh stores "" in FB
 - navigate to *.* or */* breaks routes somehow....
 - fix snake- & camel-case shitshow
