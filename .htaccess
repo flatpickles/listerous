@@ -6,6 +6,8 @@ RewriteRule ^history$ /history.html [L]
 RewriteRule ^about$ /about.html [L]
 RewriteRule ^history/$ /history.html [L]
 RewriteRule ^about/$ /about.html [L]
+RewriteRule ^ie$ /ie.html [L]
+RewriteRule ^ie/$ /ie.html [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

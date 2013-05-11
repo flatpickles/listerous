@@ -101,7 +101,7 @@ input[type="text"] {
 	border: 2px solid #f1fcff;
 	box-shadow: none;
 	outline: none;
-	background-color: inherit;
+	background-color: #f1fcff;
 	padding: 5px;
 	
 	/* tweaks 'n' shit */

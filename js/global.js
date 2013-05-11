@@ -3,6 +3,17 @@ var FADETIME = 200;
 var SELECTONCLICK = false;
 
 $(document).ready(function() {
+	if (location.pathname.indexOf("ie") !== -1) {
+		// render the ie error page
+		$("#contents_wrapper").show();
+		return;
+	} else {
+		// check if we're in ie
+		if ($.browser.msie && parseInt($.browser.version) < 8) {
+			document.location = "ie";
+		}
+	}
+	
 	// make new click createAndLoad (from data.js
 	$("#header_new").click(createAndLoad);
 	// make about/history loads fade out too

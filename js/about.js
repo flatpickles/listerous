@@ -1,3 +1,3 @@
 $(window).load(function() {
-	$("#contents_wrapper").fadeIn(250);
+	$("#contents_wrapper").fadeIn(FADETIME);
 });
