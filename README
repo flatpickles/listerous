@@ -8,7 +8,6 @@ Features:
 
 Bugs / de-grossing:
 - title delete -> refresh stores "" in FB
-- navigate to *.* or */* breaks routes somehow....
 - fix snake- & camel-case shitshow
 - maybe "stuff" vs 'stuff' too
 - add moar comments

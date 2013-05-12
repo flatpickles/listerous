@@ -17,6 +17,8 @@ function setupData() {
 // initialize firebase structure(s)
 function initFB() {
 	var currList = window.location.toString().split(siteName)[1];
+	// replace "/", ".", "#", "$", "[", or "]" with ""
+	currList = currList.replace(new RegExp( "[/\.#$\\[\\]]", "gi" ), "");
 	
 	// check if url has a list ID
 	if (currList == undefined) {

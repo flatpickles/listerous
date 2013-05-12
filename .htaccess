@@ -11,4 +11,4 @@ RewriteRule ^ie/$ /ie.html [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /main.html [L]
+RewriteRule .* /main.html [L]

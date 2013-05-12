@@ -11,8 +11,8 @@ var del_sep = "#";
 // preloads (global)
 delImage = new Image();
 delHovImage = new Image();
-delImage.src = "graphics/x.png";
-delHovImage.src = "graphics/x_hover.png";
+delImage.src = "/graphics/x.png";
+delHovImage.src = "/graphics/x_hover.png";
 /* var delImgEl = $('<img />').attr('src', 'graphics/x.png'); // MAYBE THIS WILL WORK */
 
 // fade in once loaded and fadeAllIn called
@@ -82,9 +82,9 @@ function setActions(el, select) {
 	    $(document).trigger("delete_el", [id]);
     }).hover(function() {
     	// hover effects for X
-    	$(this).attr("src", "graphics/x_hover.png");
+    	$(this).attr("src", "/graphics/x_hover.png");
     }, function () {
-	    $(this).attr("src", "graphics/x.png");
+	    $(this).attr("src", "/graphics/x.png");
     });
     // handle value changed, send to data.js
     el.find("input").keyup(function() {
