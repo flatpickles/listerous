@@ -112,6 +112,11 @@ input[type="text"] {
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
+/* IE's clear in box */
+input[type=text]::-ms-clear {
+    display: none;
+}
+
 input:focus {
 	border: 2px solid #009193;
 }
