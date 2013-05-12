@@ -31,14 +31,23 @@ function fadeAllIn() {
 // end fade in shit
 
 function displayItem(id, val, focus, select) {
+	// hacky fix: I think clone takes longer on mobile, so let it catch up before fading
+	var delayBase = 75;
+	var delayTime = isMobile.any() ? delayBase : 0; 
+	var localFadeTime = isMobile.any() ? FADETIME * 2 - delayBase : FADETIME * 2;
+	// if it already exists... it was added from Firebase
 	if ($('#'+id).length) {
-		if (focus) $('#'+id).find("input").focus();
+		if (focus) {
+			$('#'+id).find("input").focus();
+			$('#'+id).find(".delete").hide().load(function() { $(this).delay(delayTime).fadeIn(localFadeTime); });
+		}
 		return;
 	}
 	// add a new element to the end of the list
-	var $newEl = $($("#list_template").html());
+	var $newEl = $("#list_template").clone();
 	$newEl.attr("id", id).find(".list_entry").attr("value", val);
 	$newEl.find(".delete").attr("id", "del" + del_sep + id);
+	if (focus) $newEl.find(".delete").hide();
 	$("#list").append($newEl);
 	// other UI updates
 	updateButton();
@@ -47,7 +56,11 @@ function displayItem(id, val, focus, select) {
 		// only scroll if appropriate
 		window.scrollTo(0, document.body.scrollHeight);
 	}
-	if (focus) $newEl.find("input").focus();
+	if (focus) {
+		$newEl.find("input").focus();
+		$newEl.find(".delete").load(function() { $(this).delay(delayTime).fadeIn(localFadeTime); });
+	}
+	$newEl.show();
 };
 
 function setActions(el, select) {
