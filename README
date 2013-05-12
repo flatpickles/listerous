@@ -7,7 +7,6 @@ Features:
 - nicer looking history page
 
 Bugs / de-grossing:
-- title delete -> refresh stores "" in FB
 - fix snake- & camel-case shitshow
 - maybe "stuff" vs 'stuff' too
 - add moar comments

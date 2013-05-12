@@ -1,6 +1,8 @@
 var LISTWIDTH = 400.0;
 var FADETIME = 200;
 var SELECTONCLICK = false;
+var STARTTITLE = 'Untitled List';
+var STARTITEM = 'Tap or click here to start';
 
 $(document).ready(function() {
 	if (location.pathname.indexOf("ie") !== -1) {

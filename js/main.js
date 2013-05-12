@@ -15,10 +15,18 @@ $(document).ready(function() {
     $("#title_input").blur(function() {
     	var v = $.trim($(this).val());
     	if (v === "") {
-	    	$(this).val(startTitle); 
-	    	$(document).trigger("update_title", [startTitle]);
+	    	$(this).val(STARTTITLE); 
+	    	$(document).trigger("update_title", [STARTTITLE]);
     	}
     });
+    
+    // handle exit with no title (probably won't work in Opera, eh.
+    window.onbeforeunload = function() {
+	    var title = $("#title_input").val();
+	    if ($.trim(title) === "") {
+	    	$(document).trigger("update_title", [STARTTITLE]);
+	    }
+	};
     
     // add bottom padding if it's mobile (see the button after focus)
     // maybe this should just be for iOS? Whatever.

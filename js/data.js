@@ -2,8 +2,6 @@
 var fbURL = 'https://listerous.firebaseio.com/lists/';
 var siteName = 'listero.us/'
 var fbItems = 'items';
-var startTitle = 'Untitled List';
-var startItem = 'Tap or click here to start';
 
 // globals
 var listObjRef;
@@ -76,9 +74,9 @@ function createList(name, callback) {
 	// create the FB object
 	var fb = new Firebase(fbURL);
 	listObjRef = name == null ? fb.push() : fb.child(name);
-	listObjRef.set({title: startTitle}, function() {
+	listObjRef.set({title: STARTTITLE}, function() {
 		listItemsRef = listObjRef.child(fbItems);
-		createItem(startItem, callback);
+		createItem(STARTITEM, callback);
 	});
 	// return list name
 	return listObjRef.name();
@@ -131,7 +129,7 @@ function updateTitleListener(dataSnapshot) {
 	}
 	// set the document title
 	if ($.trim(title) === "") {
-		document.title = startTitle;
+		document.title = STARTTITLE;
 	} else {
 		document.title = title;
 	}
