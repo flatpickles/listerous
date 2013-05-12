@@ -44,7 +44,7 @@ function displayItem(id, val, focus, select) {
 		return;
 	}
 	// add a new element to the end of the list
-	var $newEl = $("#list_template").clone();
+	var $newEl = $($("#list_template").html());
 	$newEl.attr("id", id).find(".list_entry").attr("value", val);
 	$newEl.find(".delete").attr("id", "del" + del_sep + id);
 	if (focus) $newEl.find(".delete").hide();
