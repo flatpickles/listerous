@@ -71,6 +71,10 @@ img.header_img {
 	user-select: none;
 }
 
+#new:hover {
+	background-color: #a2cfd2;
+}
+
 #header_new {
 	cursor: pointer;
 }

@@ -4,6 +4,14 @@ var SELECTONCLICK = false;
 var STARTTITLE = 'Untitled List';
 var STARTITEM = 'Tap or click here to start';
 
+// image preloads
+histHovImage = new Image();
+histHovImage.src = "/graphics/history_hover.png";
+aboutHovImage = new Image();
+aboutHovImage.src = "/graphics/about_hover.png";
+newHovImage = new Image();
+newHovImage.src = "/graphics/new_hover.png";
+
 $(document).ready(function() {
 	if (location.pathname.indexOf("ie") !== -1) {
 		// render the ie error page
@@ -21,6 +29,23 @@ $(document).ready(function() {
 	// make about/history loads fade out too
 	$("#left_nav").click(function() {
 		$("#contents_wrapper").fadeOut(FADETIME);
+	});
+	
+	// hover graphics for headers
+	$("#header_hist").hover(function() {
+		$(this).attr("src", "/graphics/history_hover.png");
+	}, function() {
+		$(this).attr("src", "/graphics/history.png");
+	});
+	$("#header_about").hover(function() {
+		$(this).attr("src", "/graphics/about_hover.png");
+	}, function() {
+		$(this).attr("src", "/graphics/about.png");
+	});
+	$("#header_new").hover(function() {
+		$(this).attr("src", "/graphics/new_hover.png");
+	}, function() {
+		$(this).attr("src", "/graphics/new.png");
 	});
 	
 	// static width on rotation

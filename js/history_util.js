@@ -48,7 +48,7 @@ function getAllLists() {
 	
 	for (el in viewed) {
 		ret.push(viewed[el].listID);
-		if (++count == histDisplay) break;
+		if (count++ == histDisplay) break;
 	}
 	return ret;
 };

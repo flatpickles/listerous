@@ -13,7 +13,6 @@ delImage = new Image();
 delHovImage = new Image();
 delImage.src = "/graphics/x.png";
 delHovImage.src = "/graphics/x_hover.png";
-/* var delImgEl = $('<img />').attr('src', 'graphics/x.png'); // MAYBE THIS WILL WORK */
 
 // fade in once loaded and fadeAllIn called
 var resLoaded = false;
