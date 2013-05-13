@@ -2,12 +2,12 @@ Listerous is a work in progress.
 
 TODO:
 
-Features:
-- hover graphics (+ preload)
-- nicer looking history page
-
 Bugs / de-grossing:
+- make absolute paths on pages other than main for consistency
 - fix snake- & camel-case shitshow
 - maybe "stuff" vs 'stuff' too
 - add moar comments
-- maybe (not) highlight fields on click? IDK
+
+Tentative / someday:
+- nicer looking history page
+- maybe highlight fields on click? IDK
