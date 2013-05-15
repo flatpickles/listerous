@@ -9,20 +9,20 @@ Listerous is an application for creating simple lists, and collaborating on them
 More or less irrelevant. Listerous doesn't maintain any user state, so your lists are technically public. However, as the great Professor X has said, "anonymity will be the first line of defense" -- it's practically impossible that someone else will guess your list's ID hash, unless you create lists with common IDs (e.g. listero.us/test). In the Firebase I'm using behind my deployment of Listerous, I have the ruleset:
 
 ```
-    {
-      "rules": {
-        ".read": false,
-        ".write": false,
-        "lists": {
-          ".read": false,
-          ".write": true,
-          "$list": {
-            ".read": true,
-            ".write": true
-          }
-        }
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "lists": {
+      ".read": false,
+      ".write": true,
+      "$list": {
+        ".read": true,
+        ".write": true
       }
     }
+  }
+}
 ```
 
 This ensures that new lists can be created and modified within the untouchable "lists" structure, but a directory of existing lists cannot be read from an API endpoint. And you can only delete/modify lists if you have their ID, so we should be set.
