@@ -15,7 +15,7 @@ function setViewed(id) {
 	obj.lists[id] = $.now();
 	
 	// write back out to cookie
-	$.cookie('viewed', obj, { expires: expiration, path: '/' });
+	$.cookie('viewed', obj, { expires: expiration, path: '/', domain: '.listero.us' }); // .listero.us makes it available at www.listero.us & listero.us
 };
 
 /* return the most recently viewed page, or undefined if none exists */
