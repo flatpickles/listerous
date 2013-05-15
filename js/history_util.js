@@ -4,7 +4,7 @@ $.cookie.json = true;
 var expiration = 90; // if you haven't looked at your lists in 2 months, you're a mope
 var histDisplay = 10; // display 10 recent items in history
 
-// set the list with ID as viewed most recently
+/* set the list with ID as viewed most recently */
 function setViewed(id) {
 	// get cookie lists structure, create if nonexistent
 	var obj = $.cookie('viewed');
@@ -18,14 +18,14 @@ function setViewed(id) {
 	$.cookie('viewed', obj, { expires: expiration, path: '/' });
 };
 
-// return the most recently viewed page, or undefined if none exists
+/* return the most recently viewed page, or undefined if none exists */
 function getMostRecentList() {
 	var obj = $.cookie('viewed');
 	if (obj == undefined) return null;
 	else return obj.recent;
 };
 
-// get a list of viewed ids, in most to least recent order
+/* get a list of viewed ids, in most to least recent order */
 function getAllLists() {
 	// get structure
 	var obj = $.cookie('viewed');

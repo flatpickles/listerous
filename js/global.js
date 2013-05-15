@@ -51,7 +51,7 @@ $(document).ready(function() {
 	// static width on rotation
 	var viewport = document.querySelector("meta[name=viewport]");
 	var scale = screen.width/LISTWIDTH;
-	viewport.setAttribute('content', 'maximum-scale=' + scale.toString());
+	viewport.setAttribute("content", "maximum-scale=" + scale.toString());
 });
 
 /* 

@@ -1,12 +1,12 @@
 // constants
-var button_texts = ["Hit me again",
+var buttonTexts = ["Hit me again",
 					"Uno mas",
 					"One more time",
 					"I'll have another",
 					"Keep 'em coming",
 					"Moar plz",
 					"Feed me"];
-var del_sep = "#";
+var delSep = "#";
 
 // preloads (global)
 delImage = new Image();
@@ -29,23 +29,24 @@ function fadeAllIn() {
 };
 // end fade in shit
 
+/* add a new item with given id & val; focus - focus after add; select - select all text on click */
 function displayItem(id, val, focus, select) {
 	// hacky fix: I think clone takes longer on mobile, so let it catch up before fading
 	var delayBase = 75;
 	var delayTime = isMobile.any() ? delayBase : 0; 
 	var localFadeTime = isMobile.any() ? FADETIME * 2 - delayBase : FADETIME * 2;
 	// if it already exists... it was added from Firebase
-	if ($('#'+id).length) {
+	if ($("#"+id).length) {
 		if (focus) {
-			$('#'+id).find("input").focus();
-			$('#'+id).find(".delete").hide().load(function() { $(this).delay(delayTime).fadeIn(localFadeTime); });
+			$("#"+id).find("input").focus();
+			$("#"+id).find(".delete").hide().load(function() { $(this).delay(delayTime).fadeIn(localFadeTime); });
 		}
 		return;
 	}
 	// add a new element to the end of the list
 	var $newEl = $($("#list_template").html());
 	$newEl.attr("id", id).find(".list_entry").attr("value", val);
-	$newEl.find(".delete").attr("id", "del" + del_sep + id);
+	$newEl.find(".delete").attr("id", "del" + delSep + id);
 	if (focus) $newEl.find(".delete").hide();
 	$("#list").append($newEl);
 	// other UI updates
@@ -62,6 +63,7 @@ function displayItem(id, val, focus, select) {
 	$newEl.show();
 };
 
+/* set up a newly added list element for user interaction; select whole text on click if "select" */
 function setActions(el, select) {
 	if (select) {
 		// handle focus/click on list elements
@@ -77,7 +79,7 @@ function setActions(el, select) {
     }
     // handle delete click, send event to data.js
     el.find("img.delete").click(function(e) {
-    	var id = $(this).attr("id").split(del_sep)[1];
+    	var id = $(this).attr("id").split(delSep)[1];
 	    $(document).trigger("delete_el", [id]);
     }).hover(function() {
     	// hover effects for X
@@ -97,6 +99,7 @@ function setActions(el, select) {
     })
 };
 
+/* animate removing an item from the list */
 function deleteItem(id) {
     $("#" + id).stop().animate({ opacity: 0 }, FADETIME, function() {
 	    $("#" + id).stop().animate( { height: "0px" }, FADETIME, function() {
@@ -105,16 +108,18 @@ function deleteItem(id) {
     });
 };
 
+/* change the text of item with id to value */
 function updateItem(id, value) {
 	var field = $("#" + id).find("input");
 	if (field.val() != value) field.val(value);
 };
 
+/* get a new (random) button text for the button */
 function updateButton() {
 	// get a new text which differs from the current
-	var newText = button_texts[Math.floor(Math.random()*button_texts.length)];
+	var newText = buttonTexts[Math.floor(Math.random()*buttonTexts.length)];
 	while (newText == $("#new").html()) {
-		newText = button_texts[Math.floor(Math.random()*button_texts.length)];
+		newText = buttonTexts[Math.floor(Math.random()*buttonTexts.length)];
 	}
 	// set the text of the button
 	$("#new").html(newText);

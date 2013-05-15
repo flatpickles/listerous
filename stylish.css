@@ -107,6 +107,7 @@ input[type="text"] {
 	outline: none;
 	background-color: #f1fcff;
 	padding: 5px;
+	padding-bottom: 3px; /* MAYBE?!?! IDK */
 	
 	/* tweaks 'n' shit */
     -webkit-appearance: none;

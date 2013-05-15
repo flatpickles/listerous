@@ -7,12 +7,12 @@ var fbItems = 'items';
 var listObjRef;
 var listItemsRef;
 
-// entry point for data management
+/* entry point for data management */
 function setupData() {
 	initFB();
 };
 
-// initialize firebase structure(s)
+/* initialize firebase structure(s) */
 function initFB() {
 	var currList = window.location.toString().split(siteName)[1];
 	// replace "/", ".", "#", "$", "[", or "]" with ""
@@ -43,7 +43,7 @@ function initFB() {
 	}
 };
 
-// load an existing list into UI
+/* load an existing list into UI */
 function parseList(listData) {
 	// set the title
 	$("#title_input").val(listData.title);
@@ -61,7 +61,7 @@ function parseList(listData) {
 	setViewed(listObjRef.name());
 };
 
-// make a generic list, go there.
+/* make a generic list, go there. */
 function createAndLoad(fade) {
 	if (fade || fade == undefined) $("#contents_wrapper").fadeOut(FADETIME);
 	var newList = createList(null, function() {
@@ -69,7 +69,7 @@ function createAndLoad(fade) {
 	});
 };
 
-// create a new list
+/* create a new list with title "name" */
 function createList(name, callback) {
 	// create the FB object
 	var fb = new Firebase(fbURL);
@@ -82,19 +82,21 @@ function createList(name, callback) {
 	return listObjRef.name();
 };
 
+/* create item with value "text" */
 function createItem(text, callback) {
 	if (text == null) text = "";
 	var newItem = listItemsRef.push(text, callback);
 	return newItem.name();
 };
 
+/* helper to call "callback" with name of list w/id "listID" */
 function loadName(listID, callback) {
 	var l = new Firebase(fbURL + listID);
 	l.once('value', callback);
 };
 
 
-/** functions for monitoring events elsewhere **/
+/** functions for monitoring events elsewhere (self-explanatory) **/
 
 $(document).on("delete_el", function(e, id) {
 	listItemsRef.child(id).set(null, function() {
@@ -111,10 +113,10 @@ $(document).on("update_title", function(e, content) {
 });
 
 
-/** functions for live collaboration **/
+/** functions for live collaboration (mostly self-explanatory) **/
 
+/* attach update functions to FB objects */
 function attachListeners() {
-	// attach update functions
 	listObjRef.child('title').on('value', updateTitleListener);
 	listItemsRef.on('child_added', addItemListener);
 	listItemsRef.on('child_removed', removeItemListener);

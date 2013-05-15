@@ -6,6 +6,7 @@ $(window).load(function() {
 	loadAllHistory();
 });
 
+/* load in all history from cookie (using history_util) */
 function loadAllHistory() {
 	var lists = getAllLists();
 	toLoad = lists.length;
@@ -24,17 +25,18 @@ function loadAllHistory() {
 		// create new elements
 		var $newEl = $($("#hist_template").html());
 		var $newBr = $("<br/>");
-		$newEl.attr('id', name).attr('href', name);
-		$newBr.attr('class', name);
+		$newEl.attr("id", name).attr("href", name);
+		$newBr.attr("class", name);
 		// attach to DOM and load title
 		$("#history_list").append($newEl).append($newBr);
 		loadName(name, loadHistoryItem);
 	}
 };
 
+/* Load a given history item's name into existing element */
 function loadHistoryItem(snapshot) {
 	// load in title to proper element
-	var val = snapshot.child('title').val();
+	var val = snapshot.child("title").val();
 	var $el = $("#" + snapshot.name());
 	if (val != null) $el.text(val);
 	else { // list has been deleted somehow
