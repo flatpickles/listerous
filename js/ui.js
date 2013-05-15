@@ -5,7 +5,9 @@ var buttonTexts = ["Hit me again",
 					"I'll have another",
 					"Keep 'em coming",
 					"Moar plz",
-					"Feed me"];
+					"Feed me",
+					"Never enough",
+					"To infinity & beyond"];
 var delSep = "#";
 
 // preloads (global)
