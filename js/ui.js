@@ -13,8 +13,8 @@ var delSep = "#";
 // preloads (global)
 delImage = new Image();
 delHovImage = new Image();
-delImage.src = "/graphics/x.png";
-delHovImage.src = "/graphics/x_hover.png";
+delImage.src = "graphics/x.png";
+delHovImage.src = "graphics/x_hover.png";
 
 // fade in once loaded and fadeAllIn called
 var resLoaded = false;
@@ -35,7 +35,7 @@ function fadeAllIn() {
 function displayItem(id, val, focus, select) {
 	// hacky fix: I think clone takes longer on mobile, so let it catch up before fading
 	var delayBase = 75;
-	var delayTime = isMobile.any() ? delayBase : 0; 
+	var delayTime = isMobile.any() ? delayBase : 0;
 	var localFadeTime = isMobile.any() ? FADETIME * 2 - delayBase : FADETIME * 2;
 	// if it already exists... it was added from Firebase
 	if ($("#"+id).length) {
@@ -70,9 +70,9 @@ function setActions(el, select) {
 	if (select) {
 		// handle focus/click on list elements
 	    el.find("input[type='text']").focus(function() {
-			$(this).setSelection(0, 9999); // this doesn't work in IE!  
+			$(this).setSelection(0, 9999); // this doesn't work in IE!
 			return false;
-	    }).mouseup(function() {	
+	    }).mouseup(function() {
 	    	if (!$(this).is(":focus")) {
 				$(this).setSelection(0, 9999);
 			}
@@ -85,9 +85,9 @@ function setActions(el, select) {
 	    $(document).trigger("delete_el", [id]);
     }).hover(function() {
     	// hover effects for X
-    	$(this).attr("src", "/graphics/x_hover.png");
+    	$(this).attr("src", "graphics/x_hover.png");
     }, function () {
-	    $(this).attr("src", "/graphics/x.png");
+	    $(this).attr("src", "graphics/x.png");
     });
     // handle value changed, send to data.js
     el.find("input").keyup(function() {
