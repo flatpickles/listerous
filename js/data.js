@@ -1,6 +1,6 @@
 // constants
 var fbURL = 'https://listerous.firebaseio.com/lists/';
-var siteName = 'listero.us/'
+var siteName = 'listerous/'
 var fbItems = 'items';
 
 // globals
@@ -17,13 +17,13 @@ function initFB() {
 	var currList = window.location.toString().split(siteName)[1];
 	// replace "/", ".", "#", "$", "[", or "]" with ""
 	currList = currList.replace(new RegExp( "[/\.#$\\[\\]]", "gi" ), "");
-	
+
 	// check if url has a list ID
 	if (currList == undefined) {
 		// should never be the case, but nav to home page just in case
 		window.location = "index.html";
 	} else {
-		listObjRef = new Firebase(fbURL + currList);	
+		listObjRef = new Firebase(fbURL + currList);
 		// handle list rendering
 		listObjRef.once('value', function(snapshot) { // maybe we could just use child()
 			if (snapshot.val() === null) {
