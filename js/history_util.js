@@ -13,9 +13,9 @@ function setViewed(id) {
 	obj.recent = id;
 	// set time in lists structure
 	obj.lists[id] = $.now();
-	
+
 	// write back out to cookie
-	$.cookie('viewed', obj, { expires: expiration, path: '/', domain: '.listero.us' }); // .listero.us makes it available at www.listero.us & listero.us
+	$.cookie('viewed', obj, { expires: expiration, path: '/', domain: window.location.host }); // .listero.us makes it available at www.listero.us & listero.us
 };
 
 /* return the most recently viewed page, or undefined if none exists */
@@ -30,22 +30,22 @@ function getAllLists() {
 	// get structure
 	var obj = $.cookie('viewed');
 	if (obj == undefined) return [];
-	
+
 	// read into list for sorting
 	var viewed = [];
 	for (el in obj.lists) {
 		viewed.push({"listID": el, "time": obj.lists[el]});
 	}
-	
+
 	// sort array
 	viewed.sort(function(a, b) {
 		return b.time - a.time;
 	});
-	
+
 	// return just items, no time
 	var ret = [];
 	var count = 0;
-	
+
 	for (el in viewed) {
 		ret.push(viewed[el].listID);
 		if (count++ == histDisplay) break;
@@ -54,17 +54,17 @@ function getAllLists() {
 };
 
 
-/* 
+/*
 -- cookie json structure --
-	
-	viewed => 
+
+	viewed =>
 		{ lists:
-			{ "-1l2kj1nnsk": 1366914675974 , 
+			{ "-1l2kj1nnsk": 1366914675974 ,
 			  "-198jjahsdj12": 1366914612341,
 			  ...
 			}
 		  recent: listID
 		}
 
--- end structure -- 
+-- end structure --
 */
